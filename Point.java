@@ -7,7 +7,6 @@
  *  For use on Coursera, Algorithms Part I programming assignment.
  *
  ******************************************************************************/
-import java.util.*;
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
 
