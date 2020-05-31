@@ -27,20 +27,39 @@ public class FastCollinearPoints {
 	        		if (slopesAt.size() >=3) {
 	        			//slopesAt.add(startPoint);
 	        			//Need to check if is repeated
-	        			allFourSegments.add(new LineSegment(startPoint, pointsCopy[i]));
+	        			if(checkSegment(slopesAt, startPoint))
+	        				allFourSegments.add(new LineSegment(startPoint, pointsCopy[i]));
 	        		}
 	        		slopesAt.clear();
 	        		slopesAt.add(pointsCopy[i]); //needed??????????
 	        	}
 		        if(slopesAt.size() >=3){
 		        	slopesAt.add(startPoint);
-		        	allFourSegments.add(new LineSegment(startPoint, pointsCopy[i-1]));
+		        	if(checkSegment(slopesAt, startPoint))
+		        		allFourSegments.add(new LineSegment(startPoint, pointsCopy[i-1]));
 		        	slopesAt.clear();
 		        }
 		        prevSlope = loSlope;
 	    	}
 	    }
     }   
+    private boolean checkSegment(List<Point> slopesAt, Point startPoint){
+    	Point maxPoint = null;
+    	Point minPoint = null;
+    	for(Point x : slopesAt){
+    		if(maxPoint == null)
+    			maxPoint = x;
+    		if(minPoint == null)
+    			minPoint = x;
+    		if(minPoint != null && x.compareTo(minPoint) > 0)
+    			minPoint = x;
+    		if(maxPoint != null && x.compareTo(maxPoint) < 0)
+    			maxPoint = x;
+    	}
+    	if(startPoint.compareTo(maxPoint) < 0 || startPoint.compareTo(minPoint) > 0)
+    		return false;
+    	return true;
+    }
     public int numberOfSegments() {
     	return allFourSegments.size();
     }       
