@@ -18,12 +18,12 @@ public class SampleClient {
 
         // print and draw the line segments
         //BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment + " Segment Founded");
             segment.draw();
         }
-
+        System.out.println("********************");
     }
 
     public static Point[] getAllPoints(String fileName) {
